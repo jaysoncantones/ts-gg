@@ -1,0 +1,4 @@
+## when running the server you can test using REST Client for Visual Studio Code
+## in this case we are testing the index / 
+
+GET http://localhost:62327/

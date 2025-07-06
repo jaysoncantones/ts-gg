@@ -1,0 +1,17 @@
+{
+  "name": "Tools",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy:client": "cd apps && cd client && npm run build && npm run deploy",
+    "dev:client": "cd apps && cd client && npm run dev",
+    "dev:server": "cd apps && cd server && npm run dev",
+    "dev:all": "npm run dev:client && npm run dev:server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.12.4"
+}
