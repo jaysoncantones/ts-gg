@@ -4,5 +4,3 @@ CREATE TABLE "tbl_user" (
 	"name" text DEFAULT '' NOT NULL,
 	CONSTRAINT "tbl_user_id_unique" UNIQUE("id")
 );
---> statement-breakpoint
-DROP TABLE "" CASCADE;

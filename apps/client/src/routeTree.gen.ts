@@ -22,6 +22,7 @@ import { Route as PostsIndexRouteImport } from './routes/posts.index'
 import { Route as UsersUserIdRouteImport } from './routes/users.$userId'
 import { Route as PostsPostIdRouteImport } from './routes/posts.$postId'
 import { Route as PathlessLayoutNestedLayoutRouteImport } from './routes/_pathlessLayout/_nested-layout'
+import { Route as demoOrpcIndexRouteImport } from './routes/(demo)/orpc/index'
 import { Route as PostsPostIdDeepRouteImport } from './routes/posts_.$postId.deep'
 import { Route as PathlessLayoutNestedLayoutRouteBRouteImport } from './routes/_pathlessLayout/_nested-layout/route-b'
 import { Route as PathlessLayoutNestedLayoutRouteARouteImport } from './routes/_pathlessLayout/_nested-layout/route-a'
@@ -85,6 +86,11 @@ const PathlessLayoutNestedLayoutRoute =
     id: '/_nested-layout',
     getParentRoute: () => PathlessLayoutRoute,
   } as any)
+const demoOrpcIndexRoute = demoOrpcIndexRouteImport.update({
+  id: '/(demo)/orpc/',
+  path: '/orpc/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PostsPostIdDeepRoute = PostsPostIdDeepRouteImport.update({
   id: '/posts_/$postId/deep',
   path: '/posts/$postId/deep',
@@ -131,6 +137,7 @@ export interface FileRoutesByFullPath {
   '/route-a': typeof PathlessLayoutNestedLayoutRouteARoute
   '/route-b': typeof PathlessLayoutNestedLayoutRouteBRoute
   '/posts/$postId/deep': typeof PostsPostIdDeepRoute
+  '/orpc': typeof demoOrpcIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -143,6 +150,7 @@ export interface FileRoutesByTo {
   '/route-a': typeof PathlessLayoutNestedLayoutRouteARoute
   '/route-b': typeof PathlessLayoutNestedLayoutRouteBRoute
   '/posts/$postId/deep': typeof PostsPostIdDeepRoute
+  '/orpc': typeof demoOrpcIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -160,6 +168,7 @@ export interface FileRoutesById {
   '/_pathlessLayout/_nested-layout/route-a': typeof PathlessLayoutNestedLayoutRouteARoute
   '/_pathlessLayout/_nested-layout/route-b': typeof PathlessLayoutNestedLayoutRouteBRoute
   '/posts_/$postId/deep': typeof PostsPostIdDeepRoute
+  '/(demo)/orpc/': typeof demoOrpcIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -176,6 +185,7 @@ export interface FileRouteTypes {
     | '/route-a'
     | '/route-b'
     | '/posts/$postId/deep'
+    | '/orpc'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -188,6 +198,7 @@ export interface FileRouteTypes {
     | '/route-a'
     | '/route-b'
     | '/posts/$postId/deep'
+    | '/orpc'
   id:
     | '__root__'
     | '/'
@@ -204,6 +215,7 @@ export interface FileRouteTypes {
     | '/_pathlessLayout/_nested-layout/route-a'
     | '/_pathlessLayout/_nested-layout/route-b'
     | '/posts_/$postId/deep'
+    | '/(demo)/orpc/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -214,6 +226,7 @@ export interface RootRouteChildren {
   RedirectRoute: typeof RedirectRoute
   UsersRoute: typeof UsersRouteWithChildren
   PostsPostIdDeepRoute: typeof PostsPostIdDeepRoute
+  demoOrpcIndexRoute: typeof demoOrpcIndexRoute
 }
 export interface FileServerRoutesByFullPath {
   '/customScript.js': typeof CustomScriptDotjsServerRoute
@@ -322,6 +335,13 @@ declare module '@tanstack/react-router' {
       fullPath: ''
       preLoaderRoute: typeof PathlessLayoutNestedLayoutRouteImport
       parentRoute: typeof PathlessLayoutRoute
+    }
+    '/(demo)/orpc/': {
+      id: '/(demo)/orpc/'
+      path: '/orpc'
+      fullPath: '/orpc'
+      preLoaderRoute: typeof demoOrpcIndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/posts_/$postId/deep': {
       id: '/posts_/$postId/deep'
@@ -446,6 +466,7 @@ const rootRouteChildren: RootRouteChildren = {
   RedirectRoute: RedirectRoute,
   UsersRoute: UsersRouteWithChildren,
   PostsPostIdDeepRoute: PostsPostIdDeepRoute,
+  demoOrpcIndexRoute: demoOrpcIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

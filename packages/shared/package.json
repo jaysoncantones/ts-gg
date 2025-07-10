@@ -1,5 +1,5 @@
 {
-  "name": "db",
+  "name": "shared",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -15,6 +15,7 @@
     "@neondatabase/serverless": "^1.0.1",
     "dotenv": "^17.0.1",
     "drizzle-orm": "^0.44.2",
+    "hono": "^4.8.4",
     "zod": "^3.25.67"
   },
   "devDependencies": {

@@ -1,11 +1,4 @@
-import { Hono } from 'hono'
+import { demoApp } from "shared";
 
-import { ANOTHERVAR } from "db"
-
-const app = new Hono()
-
-app.get('/', (c) => {
-  return c.text(`Hello Hono!, ${ANOTHERVAR}`)
-})
-
-export default app
+const app = demoApp;
+export default app;
