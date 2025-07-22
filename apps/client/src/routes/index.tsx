@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { ANOTHERVAR } from "db";
+import { ANOTHERVAR } from "shared";
 
 export const Route = createFileRoute("/")({
   component: Home,

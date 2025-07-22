@@ -1,14 +1,12 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "notiftool-server",
+  "name": "tsgg-server",
   "main": "src/index.ts",
-  "compatibility_date": "2025-07-01"
-  // "compatibility_flags": [
-  //   "nodejs_compat"
-  // ],
-  // "vars": {
-  //   "MY_VAR": "my-variable"
-  // },
+  "compatibility_date": "2025-07-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "vars": {
+    "DATABASE_URL": "postgresql://neondb_owner:npg_qjVwlsi8ovN0@ep-lively-heart-a7bh4cl5-pooler.ap-southeast-2.aws.neon.tech/neondb?sslmode=require"
+  }
   // "kv_namespaces": [
   //   {
   //     "binding": "MY_KV_NAMESPACE",
