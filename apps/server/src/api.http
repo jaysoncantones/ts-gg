@@ -1,6 +1,6 @@
 ### when running the server you can test using REST Client for Visual Studio Code
 ### in this case we are testing the index / 
 
-GET http://localhost:8787/demo
+GET http://localhost:57446/demo
 
 

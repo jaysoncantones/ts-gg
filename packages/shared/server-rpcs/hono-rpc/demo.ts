@@ -1,9 +1,7 @@
 import { Hono } from "hono";
-const demoApp = new Hono();
+const AppRPC = new Hono();
 
-const route = demoApp.get("/demo", (c) => {
-  return c.json({ data: `Hello Hono!` }, 200);
-});
+const route = AppRPC.get("/demo");
 
-export { demoApp };
-export type DemoAppType = typeof route;
+export { AppRPC };
+export type AppRPCType = typeof route;

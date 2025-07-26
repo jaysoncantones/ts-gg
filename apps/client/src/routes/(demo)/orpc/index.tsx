@@ -1,14 +1,29 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useRouteContext } from "@tanstack/react-router";
 import { hc } from "hono/client";
 
-import { ANOTHERVAR, DemoAppType } from "shared";
+// import { AppRPCType, TblBAUser } from "shared";
+// import { getUserRPC } from "~/services/rpc/user-ba-rpc";
+
+import {
+  useQueryDataByAll as useQueryDataByAll_Users,
+  useEnsureQueryDataByAll as useEnsureQueryDataByAll_Users,
+} from "~/services/hooks/use-user-ba";
 
 export const Route = createFileRoute("/(demo)/orpc/")({
-  beforeLoad: async () => {
-    const client = hc<DemoAppType>("http://localhost:8787/");
-    const res = await client.demo.$get();
-    const data = await res.json();
-    console.log(data, " DATA");
+  beforeLoad: async ({ context }) => {
+    const { queryClient } = context;
+    const { data: usersState } = await useEnsureQueryDataByAll_Users(
+      queryClient
+    );
+
+    console.log(usersState, " usersState");
+
+    // const client = hc<AppRPCType>("http://localhost:8787/");
+    // const res = await client.demo.$get();
+    // const result = await res.json();
+    // const { data, success, error } = TblBAUser.safeParse(result);
+    // if (error) console.error(error);
+    // // if (success) console.log(data);
   },
   component: RouteComponent,
 });
@@ -16,7 +31,7 @@ export const Route = createFileRoute("/(demo)/orpc/")({
 function RouteComponent() {
   return (
     <div>
-      <p>Consume an ORPC endpoint from the server ANOTHERVAR {ANOTHERVAR}</p>
+      <p>Consume an ORPC endpoint from the server ANOTHERVAR</p>
     </div>
   );
 }
