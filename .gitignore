@@ -1,4 +1,4 @@
 node_modules
 package-lock.json
 
-shared/.env
+packages/shared/.env
