@@ -1,5 +1,1 @@
-export {
-  TblBAUser,
-  TblBAUserInsert,
-  TblBAUserSelect,
-} from "./tbl-ba-user-schema";
+export { TblBAUser } from "./tbl-ba-user-schema";

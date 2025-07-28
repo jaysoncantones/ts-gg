@@ -15,15 +15,7 @@ export const Route = createFileRoute("/(demo)/orpc/")({
     const { data: usersState } = await useEnsureQueryDataByAll_Users(
       queryClient
     );
-
-    console.log(usersState, " usersState");
-
-    // const client = hc<AppRPCType>("http://localhost:8787/");
-    // const res = await client.demo.$get();
-    // const result = await res.json();
-    // const { data, success, error } = TblBAUser.safeParse(result);
-    // if (error) console.error(error);
-    // // if (success) console.log(data);
+    console.log(usersState);
   },
   component: RouteComponent,
 });

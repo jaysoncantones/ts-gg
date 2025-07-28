@@ -5,7 +5,7 @@
   "compatibility_date": "2025-07-01",
   "compatibility_flags": ["nodejs_compat"],
   "vars": {
-    "DATABASE_URL": "postgresql://neondb_owner:npg_6VmnIreR0oWv@ep-lively-heart-a7bh4cl5-pooler.ap-southeast-2.aws.neon.tech/neondb?sslmode=require"
+    "DATABASE_URL": ""
   }
   // "kv_namespaces": [
   //   {

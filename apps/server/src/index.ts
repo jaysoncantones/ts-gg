@@ -1,17 +1,9 @@
 import { Hono } from "hono";
 
-import { DBNeonConnect, tbl_ba_user } from "shared";
+import users from "./users";
 
-const app = new Hono<{ Bindings: CloudflareBindings }>();
+const app = new Hono();
 
-const route = app.get("/demo", async (c) => {
-  try {
-    const db = DBNeonConnect(c.env.DATABASE_URL);
-    const data = await db.select().from(tbl_ba_user).limit(2);
-    return c.json({ data, error: null }, 200);
-  } catch (error) {
-    return c.json({ data: null, error: "Error" }, 200);
-  }
-});
+app.route("/users", users);
 
-export default route;
+export default app;
