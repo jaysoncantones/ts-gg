@@ -1,1 +1,1 @@
-export { GetUsersRoute, PostUsersRoute } from "./users";
+export * from "./users";

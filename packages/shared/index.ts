@@ -8,4 +8,4 @@ export * from "./db-schema-types";
 export * from "./db-connection/db-neon-connect";
 
 // RPC ROUTES
-export * from "./server-rpcs";
+export * from "./server-rpcs/users";

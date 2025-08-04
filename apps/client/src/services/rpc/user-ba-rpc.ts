@@ -1,8 +1,8 @@
 import { hc } from "hono/client";
-import { GetUsersRoute, TblBAUser } from "shared";
+import { UsersRPCType, TblBAUser } from "shared";
 
 export const getUsersRPC = async () => {
-  const client = hc<GetUsersRoute>("http://localhost:8787/");
+  const client = hc<UsersRPCType>("http://localhost:8787/");
   const res = await client.users.$get();
   const result = await res.json();
   const { data, success, error } = TblBAUser.safeParse(result);
