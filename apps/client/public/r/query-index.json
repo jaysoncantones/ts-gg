@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "query-index",
+  "type": "registry:lib",
+  "title": "Query Index",
+  "description": "All collections of query builder components and hooks.",
+  "registryDependencies": [
+    "https://demo.hodle.xyz/r/query-key-factory.json",
+    "https://demo.hodle.xyz/r/query-options.json",
+    "https://demo.hodle.xyz/r/query-hooks.json"
+  ],
+  "files": [
+    {
+      "path": "registry/query-builder/query-index.tsx",
+      "content": "export { demoQueryKeyFactory } from \"./query-key-factory\";\nexport { demoQueryOptions } from \"./query-options\";\nexport {\n  useAllQuery,\n  useListQuery,\n  useListsQuery,\n  useDetailQuery,\n  useDetailsQuery,\n} from \"./query-hooks\";\n",
+      "type": "registry:lib"
+    }
+  ]
+}

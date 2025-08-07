@@ -1,0 +1,72 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "hodle",
+  "homepage": "https://hodle.xyz",
+  "items": [
+    {
+      "name": "query-key-factory",
+      "type": "registry:lib",
+      "title": "Query Key Factory",
+      "description": "A tanstack query key factory starter kit for building query key factory in your application.",
+      "files": [
+        {
+          "path": "registry/query-builder/query-key-factory.tsx",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "query-options",
+      "type": "registry:lib",
+      "title": "Query Options",
+      "description": "A tanstack query options starter kit.",
+      "files": [
+        {
+          "path": "registry/query-builder/query-options.tsx",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "query-hooks",
+      "type": "registry:lib",
+      "title": "Query Hooks",
+      "description": "A tanstack query hooks using query options with query key factories.",
+      "files": [
+        {
+          "path": "registry/query-builder/query-hooks.tsx",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "mutation-hooks",
+      "type": "registry:lib",
+      "title": "Mutation Hooks",
+      "description": "A tanstack mutation hooks using query options with query key factories.",
+      "files": [
+        {
+          "path": "registry/query-builder/mutation-hooks.tsx",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "query-index",
+      "type": "registry:lib",
+      "title": "Query Index",
+      "description": "All collections of query builder components and hooks.",
+      "files": [
+        {
+          "path": "registry/query-builder/query-index.tsx",
+          "type": "registry:lib"
+        }
+      ],
+      "registryDependencies": [
+        "https://demo.hodle.xyz/r/query-key-factory.json",
+        "https://demo.hodle.xyz/r/query-options.json",
+        "https://demo.hodle.xyz/r/query-hooks.json"
+      ]
+    }
+  ]
+}

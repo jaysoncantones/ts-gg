@@ -12,8 +12,11 @@ import { createServerRootRoute } from '@tanstack/react-start/server'
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as appQueryBuilderRouteRouteImport } from './routes/(app)/query-builder/route'
-import { Route as appQueryBuilderIndexRouteImport } from './routes/(app)/query-builder/index'
+import { Route as appBuilderRouteRouteImport } from './routes/(app)/builder/route'
+import { Route as appBuilderQueryRouteRouteImport } from './routes/(app)/builder/query/route'
+import { Route as appBuilderFormRouteRouteImport } from './routes/(app)/builder/form/route'
+import { Route as appBuilderQueryIndexRouteImport } from './routes/(app)/builder/query/index'
+import { Route as appBuilderFormIndexRouteImport } from './routes/(app)/builder/form/index'
 import { ServerRoute as ApiUsersServerRouteImport } from './routes/api/users'
 import { ServerRoute as ApiUsersUserIdServerRouteImport } from './routes/api/users.$userId'
 
@@ -24,15 +27,30 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const appQueryBuilderRouteRoute = appQueryBuilderRouteRouteImport.update({
-  id: '/(app)/query-builder',
-  path: '/query-builder',
+const appBuilderRouteRoute = appBuilderRouteRouteImport.update({
+  id: '/(app)/builder',
+  path: '/builder',
   getParentRoute: () => rootRouteImport,
 } as any)
-const appQueryBuilderIndexRoute = appQueryBuilderIndexRouteImport.update({
+const appBuilderQueryRouteRoute = appBuilderQueryRouteRouteImport.update({
+  id: '/query',
+  path: '/query',
+  getParentRoute: () => appBuilderRouteRoute,
+} as any)
+const appBuilderFormRouteRoute = appBuilderFormRouteRouteImport.update({
+  id: '/form',
+  path: '/form',
+  getParentRoute: () => appBuilderRouteRoute,
+} as any)
+const appBuilderQueryIndexRoute = appBuilderQueryIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => appQueryBuilderRouteRoute,
+  getParentRoute: () => appBuilderQueryRouteRoute,
+} as any)
+const appBuilderFormIndexRoute = appBuilderFormIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => appBuilderFormRouteRoute,
 } as any)
 const ApiUsersServerRoute = ApiUsersServerRouteImport.update({
   id: '/api/users',
@@ -47,30 +65,51 @@ const ApiUsersUserIdServerRoute = ApiUsersUserIdServerRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/query-builder': typeof appQueryBuilderRouteRouteWithChildren
-  '/query-builder/': typeof appQueryBuilderIndexRoute
+  '/builder': typeof appBuilderRouteRouteWithChildren
+  '/builder/form': typeof appBuilderFormRouteRouteWithChildren
+  '/builder/query': typeof appBuilderQueryRouteRouteWithChildren
+  '/builder/form/': typeof appBuilderFormIndexRoute
+  '/builder/query/': typeof appBuilderQueryIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/query-builder': typeof appQueryBuilderIndexRoute
+  '/builder': typeof appBuilderRouteRouteWithChildren
+  '/builder/form': typeof appBuilderFormIndexRoute
+  '/builder/query': typeof appBuilderQueryIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/(app)/query-builder': typeof appQueryBuilderRouteRouteWithChildren
-  '/(app)/query-builder/': typeof appQueryBuilderIndexRoute
+  '/(app)/builder': typeof appBuilderRouteRouteWithChildren
+  '/(app)/builder/form': typeof appBuilderFormRouteRouteWithChildren
+  '/(app)/builder/query': typeof appBuilderQueryRouteRouteWithChildren
+  '/(app)/builder/form/': typeof appBuilderFormIndexRoute
+  '/(app)/builder/query/': typeof appBuilderQueryIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/query-builder' | '/query-builder/'
+  fullPaths:
+    | '/'
+    | '/builder'
+    | '/builder/form'
+    | '/builder/query'
+    | '/builder/form/'
+    | '/builder/query/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/query-builder'
-  id: '__root__' | '/' | '/(app)/query-builder' | '/(app)/query-builder/'
+  to: '/' | '/builder' | '/builder/form' | '/builder/query'
+  id:
+    | '__root__'
+    | '/'
+    | '/(app)/builder'
+    | '/(app)/builder/form'
+    | '/(app)/builder/query'
+    | '/(app)/builder/form/'
+    | '/(app)/builder/query/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  appQueryBuilderRouteRoute: typeof appQueryBuilderRouteRouteWithChildren
+  appBuilderRouteRoute: typeof appBuilderRouteRouteWithChildren
 }
 export interface FileServerRoutesByFullPath {
   '/api/users': typeof ApiUsersServerRouteWithChildren
@@ -106,19 +145,40 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(app)/query-builder': {
-      id: '/(app)/query-builder'
-      path: '/query-builder'
-      fullPath: '/query-builder'
-      preLoaderRoute: typeof appQueryBuilderRouteRouteImport
+    '/(app)/builder': {
+      id: '/(app)/builder'
+      path: '/builder'
+      fullPath: '/builder'
+      preLoaderRoute: typeof appBuilderRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(app)/query-builder/': {
-      id: '/(app)/query-builder/'
+    '/(app)/builder/query': {
+      id: '/(app)/builder/query'
+      path: '/query'
+      fullPath: '/builder/query'
+      preLoaderRoute: typeof appBuilderQueryRouteRouteImport
+      parentRoute: typeof appBuilderRouteRoute
+    }
+    '/(app)/builder/form': {
+      id: '/(app)/builder/form'
+      path: '/form'
+      fullPath: '/builder/form'
+      preLoaderRoute: typeof appBuilderFormRouteRouteImport
+      parentRoute: typeof appBuilderRouteRoute
+    }
+    '/(app)/builder/query/': {
+      id: '/(app)/builder/query/'
       path: '/'
-      fullPath: '/query-builder/'
-      preLoaderRoute: typeof appQueryBuilderIndexRouteImport
-      parentRoute: typeof appQueryBuilderRouteRoute
+      fullPath: '/builder/query/'
+      preLoaderRoute: typeof appBuilderQueryIndexRouteImport
+      parentRoute: typeof appBuilderQueryRouteRoute
+    }
+    '/(app)/builder/form/': {
+      id: '/(app)/builder/form/'
+      path: '/'
+      fullPath: '/builder/form/'
+      preLoaderRoute: typeof appBuilderFormIndexRouteImport
+      parentRoute: typeof appBuilderFormRouteRoute
     }
   }
 }
@@ -141,16 +201,41 @@ declare module '@tanstack/react-start/server' {
   }
 }
 
-interface appQueryBuilderRouteRouteChildren {
-  appQueryBuilderIndexRoute: typeof appQueryBuilderIndexRoute
+interface appBuilderFormRouteRouteChildren {
+  appBuilderFormIndexRoute: typeof appBuilderFormIndexRoute
 }
 
-const appQueryBuilderRouteRouteChildren: appQueryBuilderRouteRouteChildren = {
-  appQueryBuilderIndexRoute: appQueryBuilderIndexRoute,
+const appBuilderFormRouteRouteChildren: appBuilderFormRouteRouteChildren = {
+  appBuilderFormIndexRoute: appBuilderFormIndexRoute,
 }
 
-const appQueryBuilderRouteRouteWithChildren =
-  appQueryBuilderRouteRoute._addFileChildren(appQueryBuilderRouteRouteChildren)
+const appBuilderFormRouteRouteWithChildren =
+  appBuilderFormRouteRoute._addFileChildren(appBuilderFormRouteRouteChildren)
+
+interface appBuilderQueryRouteRouteChildren {
+  appBuilderQueryIndexRoute: typeof appBuilderQueryIndexRoute
+}
+
+const appBuilderQueryRouteRouteChildren: appBuilderQueryRouteRouteChildren = {
+  appBuilderQueryIndexRoute: appBuilderQueryIndexRoute,
+}
+
+const appBuilderQueryRouteRouteWithChildren =
+  appBuilderQueryRouteRoute._addFileChildren(appBuilderQueryRouteRouteChildren)
+
+interface appBuilderRouteRouteChildren {
+  appBuilderFormRouteRoute: typeof appBuilderFormRouteRouteWithChildren
+  appBuilderQueryRouteRoute: typeof appBuilderQueryRouteRouteWithChildren
+}
+
+const appBuilderRouteRouteChildren: appBuilderRouteRouteChildren = {
+  appBuilderFormRouteRoute: appBuilderFormRouteRouteWithChildren,
+  appBuilderQueryRouteRoute: appBuilderQueryRouteRouteWithChildren,
+}
+
+const appBuilderRouteRouteWithChildren = appBuilderRouteRoute._addFileChildren(
+  appBuilderRouteRouteChildren,
+)
 
 interface ApiUsersServerRouteChildren {
   ApiUsersUserIdServerRoute: typeof ApiUsersUserIdServerRoute
@@ -166,7 +251,7 @@ const ApiUsersServerRouteWithChildren = ApiUsersServerRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  appQueryBuilderRouteRoute: appQueryBuilderRouteRouteWithChildren,
+  appBuilderRouteRoute: appBuilderRouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

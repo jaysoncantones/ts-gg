@@ -17,66 +17,31 @@ import {
   SidebarMenuSubItem,
 } from "~/components/ui/sidebar";
 
-const urlTo = "/builder/query";
-const getLinkOptions = () => [
-  {
-    title: "Query Builder",
-    url: urlTo,
-    icon: SquareTerminal,
-    isActive: true,
-    items: linkOptions([
-      {
-        label: "All",
-        to: urlTo,
-        search: { section: "all" },
-      },
-      {
-        label: "Query Key Factory",
-        to: urlTo,
-        search: { section: "query-key-factory" },
-      },
-      {
-        label: "Query Options",
-        to: urlTo,
-        search: { section: "query-options" },
-      },
-      {
-        label: "Query Hooks",
-        to: urlTo,
-        search: { section: "query-hooks" },
-      },
-      {
-        label: "Mutation Hooks",
-        to: urlTo,
-        search: { section: "mutation-hooks" },
-      },
-    ]),
-  },
-];
+import { getSidebarNavs } from "~/components/app/builder/form/route-navs";
 
-export function NavQueryBuilder() {
-  const navs = getLinkOptions();
+export function NavFormBuilder() {
+  const navs = getSidebarNavs();
 
   return (
-    <SidebarGroup>
+    <SidebarGroup className="">
       <SidebarGroupLabel className="uppercase tracking-widest">
-        Tanstack Query
+        Tanstack Form
       </SidebarGroupLabel>
       <SidebarMenu>
         {navs.map((item) => (
           <Collapsible
-            key={item.title}
+            key={item.label}
             asChild
             defaultOpen={item.isActive}
             className="group/collapsible"
           >
             <SidebarMenuItem>
               <CollapsibleTrigger asChild>
-                <SidebarMenuButton tooltip={item.title}>
+                <SidebarMenuButton tooltip={item.label}>
                   {item.icon && <item.icon />}
-                  <Link to={item.url} className="flex items-center gap-2">
+                  <Link to={item.to} className="flex items-center gap-2">
                     <span className="uppercase tracking-wider text-xs">
-                      {item.title}
+                      {item.label}
                     </span>
                   </Link>
                   <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />

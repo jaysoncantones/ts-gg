@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "query-key-factory",
+  "type": "registry:lib",
+  "title": "Query Key Factory",
+  "description": "A tanstack query key factory starter kit for building query key factory in your application.",
+  "files": [
+    {
+      "path": "registry/query-builder/query-key-factory.tsx",
+      "content": "export const demoQueryKeyFactory = {\n  all: () => [\"demo\"],\n  lists: () => [...demoQueryKeyFactory.all(), \"list\"],\n  list: (filter: Record<string, any>) => [\n    ...demoQueryKeyFactory.lists(),\n    { filter },\n  ],\n  details: () => [...demoQueryKeyFactory.all(), \"detail\"],\n  detail: (id: string | number) => [...demoQueryKeyFactory.details(), { id }],\n} as const;\n",
+      "type": "registry:lib"
+    }
+  ]
+}

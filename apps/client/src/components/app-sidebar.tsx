@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 
 import { NavQueryBuilder } from "~/components/nav-query-builder";
+import { NavFormBuilder } from "~/components/nav-form-builder";
 import { NavProjects } from "~/components/nav-projects";
 import { NavUser } from "~/components/nav-user";
 import { TeamSwitcher } from "~/components/team-switcher";
@@ -23,7 +24,7 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "~/components/ui/sidebar";
-import { SearchQueryOptionsTypes } from "./app/query-builder/route-schema";
+import { SearchQueryOptionsTypes } from "./app/builder/query/route-schema";
 
 // This is sample data.
 const data = {
@@ -173,6 +174,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader> */}
       <SidebarContent>
         <NavQueryBuilder />
+        <NavFormBuilder />
         {/* <NavProjects projects={data.projects} /> */}
       </SidebarContent>
       <SidebarFooter>{/* <NavUser user={data.user} /> */}</SidebarFooter>

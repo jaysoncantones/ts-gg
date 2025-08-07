@@ -7,7 +7,8 @@
     "dev": "vite dev",
     "build": "vite build && tsc --noEmit",
     "start": "node .output/server/index.mjs",
-    "deploy": "npm run build && wrangler deploy"
+    "deploy": "npm run build && wrangler deploy",
+    "registry:build": "shadcn build"
   },
   "dependencies": {
     "@ai-sdk/react": "^1.2.12",
@@ -67,6 +68,7 @@
     "react-syntax-highlighter": "^15.6.1",
     "recharts": "^2.15.2",
     "redaxios": "^0.5.1",
+    "shadcn": "2.9.3-canary.0",
     "shared": "workspace:*",
     "sonner": "^2.0.5",
     "tailwind-merge": "^2.6.0",

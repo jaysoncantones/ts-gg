@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "query-options",
+  "type": "registry:lib",
+  "title": "Query Options",
+  "description": "A tanstack query options starter kit.",
+  "files": [
+    {
+      "path": "registry/query-builder/query-options.tsx",
+      "content": "import { queryOptions } from \"@tanstack/react-query\";\n\nimport { demoQueryKeyFactory } from \"./query-key-factory.js\";\nimport { getUsersRPC } from \"~/services/rpc/user-ba-rpc\";\n\nconst allQueryFn = async () => {\n  const response = await fetch(\"sample\");\n};\n\nconst listsQueryFn = async () => {\n  const response = await fetch(\"sample\");\n};\n\nconst listQueryFn = async (filter: Record<string, any>) => {\n  const response = await fetch(\"sample\");\n};\n\nconst detailsQueryFn = async () => {\n  const response = await fetch(\"sample\");\n};\n\nconst detailQueryFn = async (id: string | number) => {\n  const response = await fetch(\"sample\");\n};\n\nexport const demoQueryOptions = {\n  all: () =>\n    queryOptions({\n      queryKey: demoQueryKeyFactory.all(),\n      queryFn: () => allQueryFn(),\n    }),\n  lists: () =>\n    queryOptions({\n      queryKey: demoQueryKeyFactory.lists(),\n      queryFn: () => listsQueryFn(),\n    }),\n  list: (filter: Record<string, any>) =>\n    queryOptions({\n      queryKey: demoQueryKeyFactory.list(filter),\n      queryFn: () => listQueryFn(filter),\n    }),\n  details: () =>\n    queryOptions({\n      queryKey: demoQueryKeyFactory.details(),\n      queryFn: () => detailsQueryFn(),\n    }),\n  detail: (id: string | number) =>\n    queryOptions({\n      queryKey: demoQueryKeyFactory.detail(id),\n      queryFn: () => detailQueryFn(id),\n    }),\n};\n",
+      "type": "registry:lib"
+    }
+  ]
+}

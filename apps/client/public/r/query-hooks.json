@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "query-hooks",
+  "type": "registry:lib",
+  "title": "Query Hooks",
+  "description": "A tanstack query hooks using query options with query key factories.",
+  "files": [
+    {
+      "path": "registry/query-builder/query-hooks.tsx",
+      "content": "import { useQuery } from \"@tanstack/react-query\";\nimport { demoQueryOptions } from \"./query-options\";\n\nexport const useAllQuery = () => useQuery(demoQueryOptions.all());\n\nexport const useListsQuery = () => useQuery(demoQueryOptions.lists());\n\nexport const useListQuery = (filter: Record<string, any>) =>\n  useQuery(demoQueryOptions.list(filter));\n\nexport const useDetailsQuery = () => useQuery(demoQueryOptions.details());\n\nexport const useDetailQuery = (id: string | number) =>\n  useQuery(demoQueryOptions.detail(id));\n",
+      "type": "registry:lib"
+    }
+  ]
+}

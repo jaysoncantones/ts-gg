@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "mutation-hooks",
+  "type": "registry:lib",
+  "title": "Mutation Hooks",
+  "description": "A tanstack mutation hooks using query options with query key factories.",
+  "files": [
+    {
+      "path": "registry/query-builder/mutation-hooks.tsx",
+      "content": "import { useQueryClient, useMutation } from \"@tanstack/react-query\";\nimport { demoQueryOptions } from \"./query-options\";\n\ntype DemoPayload = {\n  id: string;\n};\n\nconst updateMutationFn = async (demoPayload: DemoPayload) => {\n  // const response = await fetch('sample');\n  return [{ id: 1 }];\n};\n\nexport const useDemoMutation = () => {\n  const queryClient = useQueryClient();\n\n  // using all as a starting template but feel\n  // free to add list, details and etc...\n  // also consider reading the Tanstack docs\n  const { queryKey } = demoQueryOptions.all();\n\n  const mutation = useMutation({\n    mutationFn: async (demoPayload: DemoPayload) => {\n      await updateMutationFn(demoPayload);\n    },\n    // When mutate is called:\n    onMutate: async (newDemo) => {\n      // Cancel any outgoing refetches\n      // (so they don't overwrite our optimistic update)\n      await queryClient.cancelQueries({ queryKey });\n\n      // Snapshot the previous value\n      const previousDemo = queryClient.getQueryData(queryKey);\n\n      // Optimistically update to the new value\n      queryClient.setQueryData(queryKey, newDemo);\n\n      // Return a context with the previous and new todo\n      return { previousDemo, newDemo };\n    },\n    // If the mutation fails, use the context we returned above\n    onError: (err, newDemo, context) => {\n      queryClient.setQueryData(\n        [\"demo\", context?.newDemo.id],\n        context.previousDemo\n      );\n    },\n    // Always refetch after error or success:\n    onSettled: (newDemo) =>\n      queryClient.invalidateQueries({ queryKey: [\"demo\", newDemo.id] }),\n  });\n\n  return {\n    mutation,\n  };\n};\n",
+      "type": "registry:lib"
+    }
+  ]
+}
